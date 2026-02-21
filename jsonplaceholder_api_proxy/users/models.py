@@ -1,13 +1,14 @@
 from typing import Annotated
 
 from pydantic import BaseModel, EmailStr, Field
+from pydantic_extra_types.coordinate import Latitude, Longitude
 
 
 class _UserBase(BaseModel):
     class Address(BaseModel):
         class Geo(BaseModel):
-            lattitude: Annotated[float, Field(alias="lat", ge=-90, le=90)]
-            longitude: Annotated[float, Field(alias="lng", ge=-180, le=180)]
+            lattitude: Annotated[Latitude, Field(alias="lat")]
+            longitude: Annotated[Longitude, Field(alias="lng")]
 
         street: str
         suite: str
