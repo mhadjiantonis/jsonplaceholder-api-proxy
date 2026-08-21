@@ -14,7 +14,7 @@ async def confirm_resource_existence(
     :type client: AsyncClient
     :param url: The URL of the resource to be confirmed
     :type url: str
-    :param error_message: The error message to show when the user does not exist
+    :param error_message: The error message to show when the resource does not exist
     :type error_message: str
     :param kwargs: Keyword arguments to be passed to the string formatter for the error message
     :type kwargs: dict[str, Any]
