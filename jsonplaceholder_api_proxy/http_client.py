@@ -1,6 +1,6 @@
 from typing import AsyncGenerator
 
-from httpx import URL, AsyncClient, Headers
+from httpx2 import URL, AsyncClient, Headers
 
 BASE_URL = "http://jsonplaceholder.typicode.com"
 

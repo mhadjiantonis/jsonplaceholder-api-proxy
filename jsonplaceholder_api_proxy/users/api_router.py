@@ -1,7 +1,7 @@
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Body, Depends, Path, Request, Response, status
-from httpx import AsyncClient, Headers
+from httpx2 import AsyncClient, Headers
 
 from ..endpoint_tags import EndpointTag
 from ..http_client import get_http_client

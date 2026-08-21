@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jsonplaceholder-api-proxy"
-version = "2026.0.1"
+version = "2026.0.2"
 description = ""
 authors = ["Marios Hadjiantonis <mhadjiantonis@gmail.com>"]
 readme = "README.md"
@@ -9,7 +9,7 @@ readme = "README.md"
 python = "^3.12"
 fastapi = { extras = ["standard"], version = "^0.139.0" }
 pydantic = "^2.13.4"
-httpx = "^0.28.1"
+httpx2 = "^2.12.0"
 
 
 [tool.poetry.group.dev.dependencies]

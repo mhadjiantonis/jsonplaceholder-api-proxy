@@ -1,7 +1,7 @@
 from typing import Any
 
 from fastapi import HTTPException, status
-from httpx import AsyncClient, HTTPStatusError
+from httpx2 import AsyncClient, HTTPStatusError
 
 
 async def confirm_resource_existence(

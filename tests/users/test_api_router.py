@@ -3,7 +3,7 @@ from typing import Any, Generator
 import pytest
 from fastapi import status
 from fastapi.testclient import TestClient
-from httpx import HTTPStatusError
+from httpx2 import HTTPStatusError
 from pytest_mock import AsyncMockType, MockerFixture
 
 from jsonplaceholder_api_proxy.api import app

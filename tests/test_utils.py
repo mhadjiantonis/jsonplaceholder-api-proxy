@@ -1,7 +1,7 @@
 import pytest
 from pytest_mock import MockerFixture
 from fastapi import HTTPException, status
-from httpx import HTTPStatusError, Request
+from httpx2 import HTTPStatusError, Request
 
 from jsonplaceholder_api_proxy.utils import confirm_resource_existence
 
