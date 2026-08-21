@@ -9,6 +9,8 @@ from ..models import HTTPError
 from ..utils import confirm_resource_existence
 from .models import PostCreate, PostRead, PostUpdate
 
+type HTTPClientDep = Annotated[AsyncClient, Depends(get_http_client, scope="function")]
+
 posts_router = APIRouter(tags=[EndpointTag.POSTS])
 
 
@@ -18,7 +20,7 @@ posts_router = APIRouter(tags=[EndpointTag.POSTS])
     responses={status.HTTP_404_NOT_FOUND: {"model": HTTPError}},
 )
 async def read_posts(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     user_id: Annotated[
         int | None,
         Query(
@@ -45,7 +47,7 @@ async def read_posts(
 
 @posts_router.post("", response_model=PostRead, status_code=status.HTTP_201_CREATED)
 async def create_post(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     post: Annotated[PostCreate, Body()],
     request: Request,
     partial_response: Response,
@@ -70,7 +72,7 @@ async def create_post(
     responses={status.HTTP_404_NOT_FOUND: {"model": HTTPError}},
 )
 async def read_post_by_id(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     post_id: Annotated[
         int,
         Path(alias="postId", gt=0, description="The ID of the post to be retrieved"),
@@ -94,7 +96,7 @@ async def read_post_by_id(
     responses={status.HTTP_404_NOT_FOUND: {"model": HTTPError}},
 )
 async def update_post(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     post_id: Annotated[
         int, Path(alias="postId", gt=0, description="The ID of the post to be replaced")
     ],
@@ -118,7 +120,7 @@ async def update_post(
 
 @posts_router.delete("/{postId}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_post(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     post_id: Annotated[
         int, Path(alias="postId", gt=0, description="The ID of the post to be deleted")
     ],

@@ -10,12 +10,14 @@ from ..posts.models import PostRead
 from ..utils import confirm_resource_existence
 from .models import UserCreate, UserRead
 
+type HTTPClientDep = Annotated[AsyncClient, Depends(get_http_client, scope="function")]
+
 users_router = APIRouter(tags=[EndpointTag.USERS])
 
 
 @users_router.get("", response_model=list[UserRead])
 async def read_users(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
 ) -> Any:
     """Get an array with all existing users"""
     ext_response = await client.get("/users")
@@ -25,7 +27,7 @@ async def read_users(
 
 @users_router.post("", response_model=UserRead, status_code=status.HTTP_201_CREATED)
 async def create_user(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     user: Annotated[UserCreate, Body()],
     request: Request,
     partial_response: Response,
@@ -50,7 +52,7 @@ async def create_user(
     responses={status.HTTP_404_NOT_FOUND: {"model": HTTPError}},
 )
 async def read_user_by_id(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     user_id: Annotated[
         int,
         Path(alias="userId", gt=0, description="The ID of the user to be retrieved"),
@@ -74,7 +76,7 @@ async def read_user_by_id(
     responses={status.HTTP_404_NOT_FOUND: {"model": HTTPError}},
 )
 async def update_user(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     user_id: Annotated[
         int, Path(alias="userId", gt=0, description="The ID of the user to be replaced")
     ],
@@ -98,7 +100,7 @@ async def update_user(
 
 @users_router.delete("/{userId}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     user_id: Annotated[
         int, Path(alias="userId", gt=0, description="The ID of the user to be deleted")
     ],
@@ -115,7 +117,7 @@ async def delete_user(
     responses={status.HTTP_404_NOT_FOUND: {"model": HTTPError}},
 )
 async def read_user_posts(
-    client: Annotated[AsyncClient, Depends(get_http_client, scope="function")],
+    client: HTTPClientDep,
     user_id: Annotated[
         int,
         Path(
