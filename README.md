@@ -1,5 +1,11 @@
 # JSONPlaceholder API Proxy
 
+[![CodeQL](https://github.com/mhadjiantonis/jsonplaceholder-api-proxy/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/mhadjiantonis/jsonplaceholder-api-proxy/actions/workflows/github-code-scanning/codeql)
+[![Tests](https://github.com/mhadjiantonis/jsonplaceholder-api-proxy/actions/workflows/tests.yml/badge.svg)](https://github.com/mhadjiantonis/jsonplaceholder-api-proxy/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/github/mhadjiantonis/jsonplaceholder-api-proxy/graph/badge.svg)](https://codecov.io/github/mhadjiantonis/jsonplaceholder-api-proxy)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![License](https://img.shields.io/github/license/mhadjiantonis/jsonplaceholder-api-proxy)](https://github.com/mhadjiantonis/jsonplaceholder-api-proxy/blob/main/LICENSE)
+
 A FastAPI-based proxy service for the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) REST API. This project provides a clean, type-safe interface with comprehensive validation and error handling for users and posts resources.
 
 ## Features
@@ -226,7 +232,7 @@ The project uses:
 
 ## License
 
-This project is provided as-is for educational and demonstration purposes.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Author
 
