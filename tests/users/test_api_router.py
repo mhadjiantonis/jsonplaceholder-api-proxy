@@ -160,41 +160,6 @@ async def test_create_user_invalid_email(client: tuple[TestClient, AsyncMockType
 
 
 @pytest.mark.asyncio
-async def test_create_user_invalid_username(client: tuple[TestClient, AsyncMockType]):
-    """Test POST /users with invalid email"""
-    test_client, _ = client
-
-    invalid_usernames = [
-        "0test",
-        "test+example",
-        "test" * 10,
-    ]
-    for username in invalid_usernames:
-        payload: dict[str, Any] = {
-            "name": "John Doe",
-            "username": username,
-            "email": "test@example.com",
-            "phone": "1-770-736-8031",
-            "address": {
-                "street": "Kulas Light",
-                "suite": "Apt. 556",
-                "city": "Gwenborough",
-                "zipcode": "92998-3874",
-                "geo": {"lat": 37.7749, "lng": -122.4194},
-            },
-            "company": {
-                "name": "Romaguera-Crona",
-                "catchPhrase": "Multi-layered client-server neural-net",
-                "bs": "harness real-time e-markets",
-            },
-        }
-
-        response = test_client.post("/users", json=payload)
-
-        assert response.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
-
-
-@pytest.mark.asyncio
 async def test_create_user_missing_required_field(
     client: tuple[TestClient, AsyncMockType],
 ):

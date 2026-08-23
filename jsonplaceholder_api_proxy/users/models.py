@@ -22,7 +22,7 @@ class _UserBase(BaseModel):
         business_slogan: Annotated[str, Field(alias="bs")]
 
     name: str
-    username: Annotated[str, Field(pattern=r"^[A-Za-z][A-Za-z0-9_.]{0,19}$")]
+    username: str
     email: EmailStr
     phone: str
     address: Address
